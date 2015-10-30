@@ -1,23 +1,12 @@
 package com.iterson.GooglePlay.activity;
 
-import com.iterson.GooglePlay.R;
-import com.iterson.GooglePlay.R.array;
-import com.iterson.GooglePlay.R.id;
-import com.iterson.GooglePlay.R.layout;
-import com.iterson.GooglePlay.R.menu;
-import com.iterson.GooglePlay.fragment.AppFragment;
-import com.iterson.GooglePlay.fragment.HomeFragment;
-
-import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBar.Tab;
-import android.support.v7.app.ActionBar.TabListener;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.SearchView.OnQueryTextListener;
@@ -25,68 +14,50 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.iterson.GooglePlay.R;
+import com.iterson.GooglePlay.fragment.AppFragment;
+import com.iterson.GooglePlay.fragment.HomeFragment;
+
 public class MainActivity extends ActionBarActivity implements
 		OnQueryTextListener {
 	private ViewPager mViewPager;
 	private String[] items;
+	private PagerTabStrip mPagerTabStrip;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		mPagerTabStrip = (PagerTabStrip) findViewById(R.id.pager_tab_strip);
+		mPagerTabStrip.setTextColor(Color.BLACK);
+		mPagerTabStrip.setBackgroundColor(Color.WHITE);
+		mPagerTabStrip.setTabIndicatorColor(getResources().getColor(R.color.indicatorcolor));
+		
 		// 加载tab的名字，value，string-array
 		items = getResources().getStringArray(R.array.tab_names);
 		mViewPager = (ViewPager) findViewById(R.id.vp);
 		mViewPager.setAdapter(new MainAdpater(getSupportFragmentManager()));
-		// 添加tabs
-		ActionBar actionBar = getSupportActionBar();
-		// 增加actionbar的滑行模式
-		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-		for (final String string : items) {
-			Tab tab = actionBar.newTab().setText(string)
-					.setTabListener(new TabListener() {
-						// 当没有被选中
-						@Override
-						public void onTabUnselected(Tab arg0,
-								FragmentTransaction arg1) {
-							
-						}
-
-						// 当被选中
-						@Override
-						public void onTabSelected(Tab tab,
-								FragmentTransaction arg1) {
-							mViewPager.setCurrentItem(tab.getPosition());
-							
-						}
-
-						// 当重新被选中
-						@Override
-						public void onTabReselected(Tab arg0,
-								FragmentTransaction arg1) {
-						}
-					});
-			actionBar.addTab(tab);
-		}
 		// 设置一个viewpage的改变监听
-		mViewPager
-				.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-
-					@Override
-					public void onPageSelected(int position) {
-						getActionBar().setSelectedNavigationItem(position);
-					}
-
-					@Override
-					public void onPageScrolled(int arg0, float arg1, int arg2) {
-
-					}
-
-					@Override
-					public void onPageScrollStateChanged(int arg0) {
-
-					}
-				});
+//		mViewPager
+//				.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+//
+//					@Override
+//					public void onPageSelected(int position) {
+//						getActionBar().setSelectedNavigationItem(position);
+//					}
+//
+//					@Override
+//					public void onPageScrollStateChanged(int arg0) {
+//						// TODO Auto-generated method stub
+//						
+//					}
+//
+//					@Override
+//					public void onPageScrolled(int arg0, float arg1, int arg2) {
+//						// TODO Auto-generated method stub
+//						
+//					}
+//				});
 
 	}
 
