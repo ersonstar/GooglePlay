@@ -8,10 +8,22 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.iterson.GooglePlay.activity.MainActivity" >
 
-	<android.support.v4.view.ViewPager
-	    android:id="@+id/vp"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    />
-	    
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <!-- 专门用来显示viewpage标题 -->
+
+        <android.support.v4.view.PagerTitleStrip
+            android:id="@+id/pager_title_strip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:background="#33b5e5"
+            android:paddingBottom="4dp"
+            android:paddingTop="4dp"
+            android:textColor="#fff" />
+    </android.support.v4.view.ViewPager>
+
 </RelativeLayout>

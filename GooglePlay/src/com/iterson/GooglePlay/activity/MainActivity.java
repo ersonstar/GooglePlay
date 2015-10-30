@@ -114,6 +114,12 @@ public class MainActivity extends ActionBarActivity implements
 		public int getCount() {
 			return items.length;
 		}
+		//指定每个标题的内容
+		@Override
+		public CharSequence getPageTitle(int position) {
+			return items[position];
+		}
+		
 
 	}
 
