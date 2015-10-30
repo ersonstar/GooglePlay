@@ -1,4 +1,4 @@
-package com.iterson.GooglePlay;
+package com.iterson.GooglePlay.activity;
 
 import android.support.v7.app.ActionBarActivity;
 

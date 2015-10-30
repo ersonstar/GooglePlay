@@ -12,9 +12,9 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/Theme.AppCompat.Light" >
+        android:theme="@style/CustomActionBarTheme" >
         <activity
-            android:name=".MainActivity"
+            android:name="com.iterson.GooglePlay.activity.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity 
-            android:name="com.iterson.GooglePlay.DetailActivity"
+            android:name="com.iterson.GooglePlay.activity.DetailActivity"
             android:label="@string/app_name"
             >            android:parentActivityName="com.iterson.GooglePlay.MainActivity"
             <!--  parentActivityName 给当前Activity找到一个爹 当点击左上角返回是，会自动跳转到这个activity -->
