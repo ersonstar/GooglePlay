@@ -1,63 +1,78 @@
 package com.iterson.GooglePlay.activity;
 
 import android.graphics.Color;
-import android.os.Bundle;
+import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.SearchView.OnQueryTextListener;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.iterson.GooglePlay.R;
 import com.iterson.GooglePlay.fragment.AppFragment;
 import com.iterson.GooglePlay.fragment.HomeFragment;
+import com.iterson.GooglePlay.utils.UIUtils;
 
-public class MainActivity extends ActionBarActivity implements
-		OnQueryTextListener {
+public class MainActivity extends BaseActivity implements OnQueryTextListener {
 	private ViewPager mViewPager;
 	private String[] items;
 	private PagerTabStrip mPagerTabStrip;
+	private DrawerLayout mDrawerLayout;
+	private ActionBarDrawerToggle toggle;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+	protected void init() {
+		// 加载tab的名字，value，string-array
+		items = UIUtils.getStringArray(R.array.tab_names);
+	}
+
+	@Override
+	protected void initView() {
 		setContentView(R.layout.activity_main);
 		mPagerTabStrip = (PagerTabStrip) findViewById(R.id.pager_tab_strip);
+		mDrawerLayout = (DrawerLayout) findViewById(R.id.dl_main);
 		mPagerTabStrip.setTextColor(Color.BLACK);
 		mPagerTabStrip.setBackgroundColor(Color.WHITE);
-		mPagerTabStrip.setTabIndicatorColor(getResources().getColor(R.color.indicatorcolor));
-		
-		// 加载tab的名字，value，string-array
-		items = getResources().getStringArray(R.array.tab_names);
+		//设置指示器颜色
+		mPagerTabStrip.setTabIndicatorColor(getResources().getColor(
+				R.color.indicatorcolor));
 		mViewPager = (ViewPager) findViewById(R.id.vp);
 		mViewPager.setAdapter(new MainAdpater(getSupportFragmentManager()));
-		// 设置一个viewpage的改变监听
-//		mViewPager
-//				.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-//
-//					@Override
-//					public void onPageSelected(int position) {
-//						getActionBar().setSelectedNavigationItem(position);
-//					}
-//
-//					@Override
-//					public void onPageScrollStateChanged(int arg0) {
-//						// TODO Auto-generated method stub
-//						
-//					}
-//
-//					@Override
-//					public void onPageScrolled(int arg0, float arg1, int arg2) {
-//						// TODO Auto-generated method stub
-//						
-//					}
-//				});
+	}
+
+	@Override
+	protected void initActionBar() {
+		
+		ActionBar actionBar = getSupportActionBar();
+		actionBar.setDisplayHomeAsUpEnabled(true);// 显示actionbar
+		// 参1是当前activity 参2目标drawerlayout
+		// 参3图片
+		// 参4 5 是字符串，但是参数只能是int类型，所以放在string引用
+		toggle = new ActionBarDrawerToggle(this, mDrawerLayout,
+				R.drawable.ic_drawer_am, R.string.open_drawer,
+				R.string.close_drawer) {
+			// 复写抽屉打开和关闭方法，同时也是监听
+			@Override
+			public void onDrawerClosed(View drawerView) {
+				super.onDrawerClosed(drawerView);
+			}                                                                          
+
+			@Override
+			public void onDrawerOpened(View drawerView) {
+				super.onDrawerOpened(drawerView);
+			}
+
+		};
+		toggle.syncState();// 同步状态
+		mDrawerLayout.setDrawerListener(toggle);// toggle实现了drawerlistener接口，所以能直接放进去
 
 	}
 
@@ -85,12 +100,12 @@ public class MainActivity extends ActionBarActivity implements
 		public int getCount() {
 			return items.length;
 		}
-		//指定每个标题的内容
+
+		// 指定每个标题的内容
 		@Override
 		public CharSequence getPageTitle(int position) {
 			return items[position];
 		}
-		
 
 	}
 
@@ -112,13 +127,13 @@ public class MainActivity extends ActionBarActivity implements
 	 */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		if (item.getItemId() == R.id.action_search) {
-			// 搜索
+		if (item.getItemId() == R.id.action_search) {// 如果点击的是搜索
 
 			return true;
 		}
-
-		return super.onOptionsItemSelected(item);
+		// 由开关首先去处理事件
+		return toggle.onOptionsItemSelected(item)
+				|| super.onOptionsItemSelected(item);
 	}
 
 	/**
