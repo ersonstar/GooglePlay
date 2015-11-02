@@ -18,7 +18,12 @@ import android.widget.Toast;
 
 import com.iterson.GooglePlay.R;
 import com.iterson.GooglePlay.fragment.AppFragment;
+import com.iterson.GooglePlay.fragment.CategoryFragment;
+import com.iterson.GooglePlay.fragment.FragmentFactory;
+import com.iterson.GooglePlay.fragment.GameFragment;
 import com.iterson.GooglePlay.fragment.HomeFragment;
+import com.iterson.GooglePlay.fragment.HotFragment;
+import com.iterson.GooglePlay.fragment.SubjectFragment;
 import com.iterson.GooglePlay.utils.UIUtils;
 
 public class MainActivity extends BaseActivity implements OnQueryTextListener {
@@ -41,7 +46,7 @@ public class MainActivity extends BaseActivity implements OnQueryTextListener {
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.dl_main);
 		mPagerTabStrip.setTextColor(Color.BLACK);
 		mPagerTabStrip.setBackgroundColor(Color.WHITE);
-		//设置指示器颜色
+		// 设置指示器颜色
 		mPagerTabStrip.setTabIndicatorColor(getResources().getColor(
 				R.color.indicatorcolor));
 		mViewPager = (ViewPager) findViewById(R.id.vp);
@@ -50,7 +55,7 @@ public class MainActivity extends BaseActivity implements OnQueryTextListener {
 
 	@Override
 	protected void initActionBar() {
-		
+
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);// 显示actionbar
 		// 参1是当前activity 参2目标drawerlayout
@@ -63,7 +68,7 @@ public class MainActivity extends BaseActivity implements OnQueryTextListener {
 			@Override
 			public void onDrawerClosed(View drawerView) {
 				super.onDrawerClosed(drawerView);
-			}                                                                          
+			}
 
 			@Override
 			public void onDrawerOpened(View drawerView) {
@@ -88,11 +93,9 @@ public class MainActivity extends BaseActivity implements OnQueryTextListener {
 		// 每个条目显示的fragment
 		@Override
 		public Fragment getItem(int position) {
-			if (position % 2 == 0) {
-				return new HomeFragment();
-			} else {
-				return new AppFragment();
-			}
+			//创建了一个工厂 方便使用
+			Fragment createFrament = FragmentFactory.createFrament(position);
+			return createFrament;
 		}
 
 		// 返回条目数量
