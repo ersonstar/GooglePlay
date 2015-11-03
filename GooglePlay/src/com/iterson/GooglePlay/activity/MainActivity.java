@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.SimpleOnPageChangeListener;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.SearchView;
@@ -17,13 +18,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.iterson.GooglePlay.R;
-import com.iterson.GooglePlay.fragment.AppFragment;
-import com.iterson.GooglePlay.fragment.CategoryFragment;
+import com.iterson.GooglePlay.fragment.BaseFragment;
 import com.iterson.GooglePlay.fragment.FragmentFactory;
-import com.iterson.GooglePlay.fragment.GameFragment;
-import com.iterson.GooglePlay.fragment.HomeFragment;
-import com.iterson.GooglePlay.fragment.HotFragment;
-import com.iterson.GooglePlay.fragment.SubjectFragment;
 import com.iterson.GooglePlay.utils.UIUtils;
 
 public class MainActivity extends BaseActivity implements OnQueryTextListener {
@@ -51,6 +47,16 @@ public class MainActivity extends BaseActivity implements OnQueryTextListener {
 				R.color.indicatorcolor));
 		mViewPager = (ViewPager) findViewById(R.id.vp);
 		mViewPager.setAdapter(new MainAdpater(getSupportFragmentManager()));
+		mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
+
+			@Override
+			public void onPageSelected(int position) {//当切换条目的时候，调用条目对呀fragment 的show方法
+				super.onPageSelected(position);
+				BaseFragment createFrament = FragmentFactory.createFrament(position);
+				createFrament.show();
+			}
+			
+		});
 	}
 
 	@Override
