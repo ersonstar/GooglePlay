@@ -16,5 +16,7 @@
         <item >排行</item>
     </string-array>
         <string name="reloading">加载失败，点击重新加载</string>
+        <string name="load_more">加载中...</string>
+        <string name="load_error">加载失败</string>
 
 </resources>

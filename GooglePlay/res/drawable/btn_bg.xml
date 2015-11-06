@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android" android:enterFadeDuration="200" android:exitFadeDuration="200">
+<!--  android:enterFadeDuration="200" android:exitFadeDuration="200"  进入动画渐变和退出动画渐变效果 -->
+    <item android:drawable="@drawable/btn_pressed" android:state_pressed="true"></item>
+    <item android:drawable="@drawable/btn_normal"></item>
+
+</selector>
