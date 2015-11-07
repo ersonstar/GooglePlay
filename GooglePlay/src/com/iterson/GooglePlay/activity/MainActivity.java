@@ -14,11 +14,14 @@ import android.support.v7.widget.SearchView.OnQueryTextListener;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.iterson.GooglePlay.R;
 import com.iterson.GooglePlay.fragment.BaseFragment;
 import com.iterson.GooglePlay.fragment.FragmentFactory;
+import com.iterson.GooglePlay.holder.MenuHolder;
 import com.iterson.GooglePlay.utils.UIUtils;
 
 public class MainActivity extends BaseActivity implements OnQueryTextListener {
@@ -27,6 +30,8 @@ public class MainActivity extends BaseActivity implements OnQueryTextListener {
 	private ViewPager mViewPager;
 	private PagerTabStrip mPagerTabStrip;
 	private ActionBarDrawerToggle toggle;
+	private FrameLayout fl_drawer;
+	private RelativeLayout photo_layout;
 
 	@Override
 	protected void init() {
@@ -36,6 +41,12 @@ public class MainActivity extends BaseActivity implements OnQueryTextListener {
 	@Override
 	protected void initView() {
 		setContentView(R.layout.activity_main);
+		//添加抽屉
+		fl_drawer = (FrameLayout) findViewById(R.id.fl_drawer);
+		MenuHolder holder = new MenuHolder();
+		View v = holder.getContentView();
+		fl_drawer.addView(v);
+		
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.dl_main);
 		mPagerTabStrip = (PagerTabStrip) findViewById(R.id.pager_tab_strip);
 		mPagerTabStrip.setTextColor(Color.BLACK);

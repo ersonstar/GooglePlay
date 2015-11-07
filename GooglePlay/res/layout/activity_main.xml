@@ -26,12 +26,12 @@
             android:paddingTop="4dp"
             android:textColor="#fff" />
     </android.support.v4.view.ViewPager>
-    <RelativeLayout 
+    <FrameLayout
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:id="@+id/fl_drawer"
         android:background="@drawable/bg_tab"
         android:layout_gravity="start"
-        ></RelativeLayout>
+        ></FrameLayout>
 
 </android.support.v4.widget.DrawerLayout>

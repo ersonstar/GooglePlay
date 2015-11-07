@@ -2,8 +2,10 @@ package com.iterson.GooglePlay.fragment;
 
 import java.util.List;
 
+import android.content.Intent;
 import android.view.View;
 
+import com.iterson.GooglePlay.activity.DetailActivity;
 import com.iterson.GooglePlay.adpter.ListBaseAdapter;
 import com.iterson.GooglePlay.domain.AppInfo;
 import com.iterson.GooglePlay.holder.HomePictureHolder;
@@ -42,13 +44,23 @@ public class HomeFragment extends BaseFragment {
 		holder.refreshView(pictures);//界面数据设置
 		lv.addHeaderView(holder.getContentView());//吧viewPager添加到listview上
 		
-		lv.setAdapter(new ListBaseAdapter(datas){
+		lv.setAdapter(new ListBaseAdapter(datas,lv){
 
 			@Override
 			protected List<AppInfo> onLoad() {
 				HomeProtocol protocol = new HomeProtocol();
 				List<AppInfo> newDatas = protocol.load(datas.size());
 				return newDatas;
+			}
+			//该方法中处理条目点击事件
+			@Override
+			protected void onInnerItemClick(int position) {
+				super.onInnerItemClick(position);
+				//根据对象获取数据
+				AppInfo appInfo = datas.get(position);
+				//跳转到DetailActivity
+				Intent intent = new Intent(UIUtils.getContext(),DetailActivity.class);
+				startActivity(intent);
 			}
 			
 		});

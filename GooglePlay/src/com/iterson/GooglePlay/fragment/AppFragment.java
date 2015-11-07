@@ -19,7 +19,7 @@ public class AppFragment extends BaseFragment {
 	@Override
 	public View createSuccessView() {
 		BaseListView lv = new BaseListView(UIUtils.getContext());
-		lv.setAdapter(new ListBaseAdapter(datas){
+		lv.setAdapter(new ListBaseAdapter(datas,lv){
 
 			@Override
 			protected List<AppInfo> onLoad() {

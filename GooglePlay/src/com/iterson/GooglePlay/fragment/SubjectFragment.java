@@ -4,6 +4,7 @@ import java.util.List;
 
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.iterson.GooglePlay.R;
@@ -32,14 +33,14 @@ public class SubjectFragment extends BaseFragment {
 //		tv.setText(datas.size()+"");//  如果给setText(int)  默认把int 当做资源id 
 //		tv.setTextSize(30);
 		BaseListView lv=new BaseListView(UIUtils.getContext());
-		lv.setAdapter(new SubjectAdapter(datas));
+		lv.setAdapter(new SubjectAdapter(datas,lv));
 		
 		return lv;
 	}
 	private class SubjectAdapter extends DefaultAdapter<SubjectInfo>{
 
-		public SubjectAdapter(List<SubjectInfo> datas) {
-			super(datas);
+		public SubjectAdapter(List<SubjectInfo> datas,ListView lv) {
+			super(datas,lv);
 		}
 		@Override
 		public BaseHolder<SubjectInfo> getHolder() {

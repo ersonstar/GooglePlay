@@ -5,20 +5,40 @@ import java.util.List;
 import android.os.SystemClock;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import com.iterson.GooglePlay.holder.BaseHolder;
 import com.iterson.GooglePlay.holder.MoreHolder;
 import com.iterson.GooglePlay.manager.ThreadManager;
 import com.iterson.GooglePlay.utils.UIUtils;
 
-public abstract class DefaultAdapter<T> extends BaseAdapter {
+public abstract class DefaultAdapter<T> extends BaseAdapter implements OnItemClickListener {
 	private List<T> datas;
 	public static final int ITEM_MORE = 0;
 	public static final int ITEM_DEFAULT = 1;
-
-	public DefaultAdapter(List<T> datas) {
+	private ListView lv;
+	public DefaultAdapter(List<T> datas,ListView lv) {
 		this.datas = datas;
+		this.lv = lv;
+		lv.setOnItemClickListener(this);
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position,
+			long id) {
+		//得到顶部view条目的数量
+		int headerViewsCount = lv.getHeaderViewsCount();
+		position = position - headerViewsCount;
+		Toast.makeText(UIUtils.getContext(), "点击了"+position, 0).show();
+		onInnerItemClick(position);
+	}
+
+	protected void onInnerItemClick(int position){
+		Toast.makeText(UIUtils.getContext(), "点击了"+position, 0).show();
 	}
 
 	private Class<? extends BaseHolder> instance;

@@ -18,5 +18,15 @@
         <string name="reloading">加载失败，点击重新加载</string>
         <string name="load_more">加载中...</string>
         <string name="load_error">加载失败</string>
+        <string name="tv_user_name">未知</string>
+        <string name="tv_user_email">unknown@xx.com</string>
+        <string name="tv_home">首页</string>
+        <string name="tv_setting">设置</string>
+        <string name="tv_theme">主题</string>
+        <string name="tv_scans">安装包管理</string>
+        <string name="tv_feedback">反馈</string>
+        <string name="tv_updates">更新版本</string>
+        <string name="tv_about">关于</string>
+        <string name="tv_exit">退出</string>
 
 </resources>
