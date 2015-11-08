@@ -1,5 +1,9 @@
 package com.iterson.GooglePlay.domain;
 
+import java.util.List;
+
+import android.R.integer;
+
 public class AppInfo {
 	private long id;
 	private String name;
@@ -9,6 +13,72 @@ public class AppInfo {
 	private long size;
 	private String downloadUrl;
 	private String des;
+	
+//	-------------------------- 以下是Detail用到的数据
+	private String downloadNum;
+	private String version;
+	private String date;
+	private String author;
+	private List<String> screen;
+	private List<String> safeUrl;
+	private List<String> safeDesUrl;
+	private List<String> safeDes;
+	public List<String> getSafeDes() {
+		return safeDes;
+	}
+	public void setSafeDes(List<String> safeDes) {
+		this.safeDes = safeDes;
+	}
+	private List<Integer> safeDesColor;
+	
+	public String getDownloadNum() {
+		return downloadNum;
+	}
+	public void setDownloadNum(String downloadNum) {
+		this.downloadNum = downloadNum;
+	}
+	public String getVersion() {
+		return version;
+	}
+	public void setVersion(String version) {
+		this.version = version;
+	}
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
+	}
+	public String getauthor() {
+		return author;
+	}
+	public void setauthor(String author) {
+		this.author = author;
+	}
+	public List<String> getScreen() {
+		return screen;
+	}
+	public void setScreen(List<String> screen) {
+		this.screen = screen;
+	}
+	public List<String> getSafeUrl() {
+		return safeUrl;
+	}
+	public void setSafeUrl(List<String> safeUrl) {
+		this.safeUrl = safeUrl;
+	}
+	public List<String> getSafeDesUrl() {
+		return safeDesUrl;
+	}
+	public void setSafeDesUrl(List<String> safeDesUrl) {
+		this.safeDesUrl = safeDesUrl;
+	}
+	public List<Integer> getSafeDesColor() {
+		return safeDesColor;
+	}
+	public void setSafeDesColor(List<Integer> safeDesColor) {
+		this.safeDesColor = safeDesColor;
+	}
 	public long getId() {
 		return id;
 	}
@@ -62,7 +132,11 @@ public class AppInfo {
 		return "AppInfo [id=" + id + ", name=" + name + ", packageName="
 				+ packageName + ", iconUrl=" + iconUrl + ", stars=" + stars
 				+ ", size=" + size + ", downloadUrl=" + downloadUrl + ", des="
-				+ des + "]";
+				+ des + ", downloadNum=" + downloadNum + ", version=" + version
+				+ ", date=" + date + ", author=" + author + ", screen="
+				+ screen + ", safeUrl=" + safeUrl + ", safeDesUrl="
+				+ safeDesUrl + ", safeDes=" + safeDes + ", safeDesColor="
+				+ safeDesColor + "]";
 	}
 	public AppInfo() {
 		super();
@@ -79,6 +153,30 @@ public class AppInfo {
 		this.downloadUrl = downloadUrl;
 		this.des = des;
 	}
-	
+	public AppInfo(long id, String name, String packageName, String iconUrl,
+			float stars, long size, String downloadUrl, String des,
+			String downloadNum, String version, String date, String author,
+			List<String> screen, List<String> safeUrl, List<String> safeDesUrl,
+			List<String> safeDes, List<Integer> safeDesColor) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.packageName = packageName;
+		this.iconUrl = iconUrl;
+		this.stars = stars;
+		this.size = size;
+		this.downloadUrl = downloadUrl;
+		this.des = des;
+		this.downloadNum = downloadNum;
+		this.version = version;
+		this.date = date;
+		this.author = author;
+		this.screen = screen;
+		this.safeUrl = safeUrl;
+		this.safeDesUrl = safeDesUrl;
+		this.safeDes = safeDes;
+		this.safeDesColor = safeDesColor;
+	}
+
 	
 }

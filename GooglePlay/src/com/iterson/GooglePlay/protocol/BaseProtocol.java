@@ -41,7 +41,7 @@ public abstract class BaseProtocol<T>{
 		// 1创建数据库 存放到数据库表中
 		// 2 缓存整个json文件   为了方便管理缓存  最好在sd卡根目录下创建文件夹,把缓存都保存到指定文件夹中  
 		String dir = FileUtils.getCacheDir();
-		File file = new File(dir, getKey()+"_" + index);
+		File file = new File(dir, getKey()+"_" + index+getParams());
 		FileWriter writer = null;
 		try {
 			writer = new FileWriter(file);
@@ -56,9 +56,18 @@ public abstract class BaseProtocol<T>{
 	}
 
 	private String loadServer(int index) {
-		String json = HttpHelper.sendGet(HttpHelper.SERVER_URL + getKey()+"?index="+index);
+		String json = HttpHelper.sendGet(HttpHelper.SERVER_URL + getKey()+"?index="+index+getParams());
 		return json;
 	}
+	/**
+	 * 如果需要传更多参数，比如包名，复写此方法   "&packageName="
+	 * @return
+	 */
+	protected String getParams() {
+		return "";
+	}
+
+
 	/**
 	 * 请求服务器的关键字  比如 HomeFragment  关键字home
 	 * @return
@@ -67,7 +76,7 @@ public abstract class BaseProtocol<T>{
 
 	private String loadLocal(int index) {
 		String dir = FileUtils.getCacheDir();
-		File file = new File(dir, getKey()+"_" + index);
+		File file = new File(dir, getKey()+"_" + index+getParams());
 		if(file.exists()){
 			 BufferedReader bufferedReader=null;
 			try {

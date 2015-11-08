@@ -60,6 +60,7 @@ public class HomeFragment extends BaseFragment {
 				AppInfo appInfo = datas.get(position);
 				//跳转到DetailActivity
 				Intent intent = new Intent(UIUtils.getContext(),DetailActivity.class);
+				intent.putExtra("packageName", appInfo.getPackageName());
 				startActivity(intent);
 			}
 			
