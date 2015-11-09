@@ -7,9 +7,11 @@ import android.widget.HorizontalScrollView;
 
 import com.iterson.GooglePlay.R;
 import com.iterson.GooglePlay.domain.AppInfo;
+import com.iterson.GooglePlay.holder.AppDetailDesHolder;
 import com.iterson.GooglePlay.holder.AppDetailInfoHolder;
 import com.iterson.GooglePlay.holder.AppDetailSrceenHolder;
 import com.iterson.GooglePlay.holder.AppDetailsBottomHolder;
+import com.iterson.GooglePlay.holder.AppDetailsDetailSafeHolder;
 import com.iterson.GooglePlay.protocol.DetailProtocol;
 import com.iterson.GooglePlay.ui.LoadingPage;
 import com.iterson.GooglePlay.ui.LoadingPage.LoadResult;
@@ -57,6 +59,8 @@ public class DetailActivity extends BaseActivity {
 	private AppDetailInfoHolder mAppDetailInfoHolder;
 	private AppDetailSrceenHolder mAppDetailSrceenHolder;
 	private AppDetailsBottomHolder mAppDetailsBottomHolder;
+	private AppDetailsDetailSafeHolder mAppDetailsDetailSafeHolder;
+	private AppDetailDesHolder mAppDetailDesHolder;
 	/**
 	 * 成功创建界面
 	 * @return
@@ -81,6 +85,16 @@ public class DetailActivity extends BaseActivity {
 		mAppDetailsBottomHolder = new AppDetailsBottomHolder();
 		mAppDetailsBottomHolder.refreshView(datas);
 		bottom_layout.addView(mAppDetailsBottomHolder.getContentView());
+		//detailSafe
+		detail_safe = (FrameLayout) view.findViewById(R.id.detail_safe);
+		mAppDetailsDetailSafeHolder = new AppDetailsDetailSafeHolder();
+		mAppDetailsDetailSafeHolder.refreshView(datas);
+		detail_safe.addView(mAppDetailsDetailSafeHolder.getContentView());
+		//简介
+		detail_des = (FrameLayout) view.findViewById(R.id.detail_des);
+		mAppDetailDesHolder = new AppDetailDesHolder();
+		mAppDetailDesHolder.refreshView(datas);
+		detail_des.addView(mAppDetailDesHolder.getContentView());
 		
 		return view;
 	}

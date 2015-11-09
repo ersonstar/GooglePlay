@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:id="@+id/detail_des_ll"
+    android:padding="8dp"
+    >
+    
+    <TextView 
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:textSize="14dp"
+        android:textColor="#3c3c3c"
+        android:text="简介"
+        />
+
+        <TextView 
+       	android:id="@+id/des_content"
+        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:textSize="14sp"
+        android:text="简介"
+        android:layout_marginTop="5dp"
+        android:textColor="#7a7a7a"
+        />
+        
+  
+	<RelativeLayout
+	     android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"
+        
+	    >
+	    <TextView 
+	        android:id="@+id/des_author_tv"
+	         android:layout_height="wrap_content"
+        	android:layout_width="wrap_content"
+        	android:textColor="#b3b3b3"
+        	android:layout_centerVertical="true"
+        	android:textSize="14dp"
+	        />
+	    
+	    <ImageView 
+	        android:layout_alignParentRight="true"
+	        android:id="@+id/des_arrow_iv"
+	        android:layout_height="wrap_content"
+        	android:layout_width="wrap_content"
+	        android:src="@drawable/arrow_down"
+	        android:layout_centerVertical="true"
+	        android:scaleType="centerInside"
+	        android:clickable="true"
+	        />
+	</RelativeLayout>
+</LinearLayout>

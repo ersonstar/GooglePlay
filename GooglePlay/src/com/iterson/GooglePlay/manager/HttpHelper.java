@@ -1,5 +1,7 @@
 package com.iterson.GooglePlay.manager;
 
+import java.net.HttpURLConnection;
+
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.http.ResponseStream;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
